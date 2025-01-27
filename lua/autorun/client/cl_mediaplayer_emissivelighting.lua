@@ -60,7 +60,7 @@ local function UpdateScreen(playerEnt)
         surface.DrawRect(0, 0, rW, rH)
 
         -- Since theres a delay to projected textures being removed, we clear the RT so the lighting disappears immediately.
-        if !mediaPlayer then
+        if !IsValid(mediaPlayer) then
             cam.End2D()
             render.PopRenderTarget()
 
@@ -69,7 +69,7 @@ local function UpdateScreen(playerEnt)
 
         local media = mediaPlayer:GetMedia()
 
-        if media then
+        if media and media.Base == "browser" then
             local browser = media:GetBrowser()
 
             -- Draw browser mat, if there is one.
